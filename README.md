@@ -16,7 +16,7 @@ This project analyzes **40,000+ house listings** across the U.S. to identify **k
 - **Google Colab**: Development environment  
 
 ## 📂 Dataset  
-- **Source**: [Mention if it’s public; otherwise, describe the dataset]  
+- **Source**: Kaggle  
 - **Size**: 40,000+ rows, 14 columns  
 - **Key Features**: Price, Beds, Baths, Living Space, Zip Code, Median Household Income  
 
