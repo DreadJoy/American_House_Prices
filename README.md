@@ -77,6 +77,8 @@ We’ll revisit this dataset in a future project focused on customer-side modeli
 ---
 
 **Author**: DreadJoy 
+
 **Email**: daverywolf@gmail.com
+
 **LinkedIn**: linkedin.com/in/david-keller-b76753265   
 
