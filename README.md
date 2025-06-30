@@ -1,60 +1,82 @@
-# American House Prices Analysis  
+# 🏠 American House Prices — Data Science Project
 
-## Overview  
-This project analyzes **40,000+ house listings** across the U.S. to identify **key factors affecting home prices**. Through **data cleaning, feature engineering, and machine learning models**, we determine the strongest predictors of housing prices.  
+This project explores predictive modeling of American house prices using a combination of deep learning and ensemble methods. We integrate a neural network, Monte Carlo dropout (for uncertainty quantification), and a random forest regressor to build a strong ensemble model.
 
-## 📝 Key Insights  
-✅ **Living Space (log-transformed)** is the most important feature for predicting home prices.  
-✅ **Median Household Income & Geographic Location (Latitude/Longitude)** significantly impact house prices.  
-✅ **Linear Regression performed poorly**, but **Random Forest improved accuracy significantly.**  
+---
 
-## 🛠️ Tech Stack  
-- **Python**: Data analysis & modeling  
-- **Pandas & NumPy**: Data manipulation  
-- **Matplotlib & Seaborn**: Data visualization  
-- **Scikit-Learn**: Machine learning models  
-- **Google Colab**: Development environment  
+## 📊 Dataset Description
+- **Source**: American Housing Dataset (CSV format)
+- **Size**: ~40,000 rows × 14 columns
+- **Features**: Includes square footage, number of rooms, year built, location data, etc.
+- **Target Variable**: House price (log-transformed for modeling)
+- **Preprocessing**:
+  - Missing value handling
+  - Feature scaling
+  - Log-transform of target variable
 
-## 📂 Dataset  
-- **Source**: Kaggle  
-- **Size**: 40,000+ rows, 14 columns  
-- **Key Features**: Price, Beds, Baths, Living Space, Zip Code, Median Household Income  
+---
 
-## 📊 Data Preprocessing & Feature Engineering  
-- Handled **missing values** and removed redundant features.  
-- Applied **log transformation** to reduce the impact of skewed data.  
-- Created a new **Beds_Baths_Total** feature to improve model performance.  
+## 🧠 Modeling Approach
+### Models Used:
+1. **Neural Network (NN)**
+   - Two hidden layers with dropout
+   - Optimized with Bayesian hyperparameter tuning
+2. **Monte Carlo Dropout (MC)**
+   - Used during inference to estimate predictive uncertainty
+3. **Random Forest (RF)**
+   - Tree-based model with good performance on structured data
 
-## 📈 Models, Hyperparameter, Performance  
-| Model and HP        | MSE (↓)      | MAE (↓)      | R² Score (↑)  |  
-|---------------------|--------------|--------------|---------------|  
-| **Linear Regression** | 775B  | 334K  | **0.29 (Poor)**    |  
-| **Decision Tree**     | 661B  | 206K  | **0.39 (Better)**  |  
-| **XGBoost**           | 309B  | 174K  | **0.72 (XGBoost)** |
-| **Random Forest**     | 272B  | 156K  | **0.75 (Best!)**   |  
+### Ensemble Strategy:
+- Combine all three models via simple averaging:
+  ```
+  Final Prediction = (NN + MC Dropout + RF) / 3
+  ```
+- We also tested weighted and optimized blending strategies.
 
-✅ **Random Forest performed the best, capturing complex relationships in housing prices.**  
+---
 
-##  Next Steps  
-Try **Gradient Boosting Models (LightGBM)** for better performance.  
-Use **Geospatial Data Visualization (Folium, Plotly)** for location-based insights.  
-Expand the dataset with **external economic factors** like interest rates.  
+## 📈 Results
+| Model           | R² Score | RMSE     |
+|----------------|-----------|----------|
+| Neural Net     | 0.7630    | 0.4035   |
+| MC Dropout     | 0.7629    | 0.4036   |
+| Random Forest  | 0.7727    | 0.3952   |
+| **Ensemble**   | **0.7754** | **0.3928** |
 
-## 🚀 How to Run the Project  
-1️⃣ Clone this repository:  
-```bash  
-git clone https://github.com/yourusername/american-house-prices.git  
-```  
-2️⃣ Install dependencies:  
-```bash  
-pip install pandas numpy matplotlib seaborn scikit-learn  
-```  
-3️⃣ Run the Jupyter Notebook or Python script:  
-```bash  
-python analysis.py  
-```  
+- The ensemble performed best, capturing the strengths of each model.
+- The models generalize well across the entire housing price spectrum (small homes to luxury mansions).
 
-##  Connect with Me  
-📧 Email: daverywolf@gmail.com
-🔗 LinkedIn: linkedin.com/in/david-keller-b76753265 
-🖥️ GitHub: https://github.com/DreadJoy/American_House_Prices
+---
+
+## 📉 Uncertainty & Explainability
+- MC Dropout was used to generate prediction intervals and visualize model uncertainty.
+- SHAP (SHapley Additive exPlanations) plots helped identify important features for RF and NN.
+
+---
+
+## 🔮 Future Work
+- Predict buyer preferences and match homes to likely customers.
+- Add geospatial modeling or clustering by ZIP code.
+- Explore pricing trends over time for forecasting.
+
+---
+
+## 🚀 How to Run
+1. Clone the repository
+2. Open the Jupyter Notebook (`American_House_Data.ipynb`)
+3. Install requirements: `pip install -r requirements.txt`
+4. Run cells in order to reproduce results
+
+---
+
+## ✅ Final Thoughts
+This project demonstrates the value of combining multiple modeling strategies. Neural networks, probabilistic methods, and tree-based models each contribute unique insights. Together, they form a more powerful predictive tool.
+
+We’ll revisit this dataset in a future project focused on customer-side modeling. For now, this ensemble sets a solid baseline.
+
+---
+
+**Author**: DreadJoy 
+**Email**: daverywolf@gmail.com
+**LinkedIn**: linkedin.com/in/david-keller-b76753265   
+
